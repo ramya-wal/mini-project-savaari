@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ramya.savaari.ui.activities.ViewUserVehicleActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <android.support.v7.widget.ContentFrameLayout
+            android:id="@+id/activity_view_user_vehicle_fragViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:id="@+id/activity_view_user_vehicle_tvBrandModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Brand Model"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/activity_view_user_vehicle_tvColour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/year" />
+
+            <TextView
+                android:id="@+id/activity_view_user_vehicle_tvYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="@string/colour" />
+
+            <TextView
+                android:id="@+id/activity_view_user_vehicle_tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="@string/price" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/activity_welcome_view"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/colorDivider" />
+
+        <TextView
+            android:id="@+id/activity_view_user_vehicle_tvOwnerDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/owner_details"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/activity_view_user_vehicle_tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="25sp" />
+
+        <TextView
+
+            android:id="@+id/acitvity_view_user_vehicle_tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/drawable_padding"
+            android:drawableStart="@drawable/home16"
+            android:padding="10dp"
+            android:textSize="@dimen/user_profile_text" />
+
+        <TextView
+            android:id="@+id/acitvity_view_user_vehicle_tvLiveIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/drawable_padding"
+            android:drawableStart="@drawable/city16"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:textSize="@dimen/user_profile_text" />
+
+
+        <TextView
+            android:id="@+id/acitvity_view_user_vehicle_tvPhoneNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/phone"
+            android:padding="10dp"
+            android:textSize="@dimen/user_profile_text" />
+
+        <TextView
+            android:id="@+id/acitvity_view_user_vehicle_tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/mail"
+            android:padding="10dp"
+            android:textSize="@dimen/user_profile_text" />
+    </LinearLayout>
+</ScrollView>

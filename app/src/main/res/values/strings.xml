@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">Savaari</string>
+
+    <!-- Login Screen -->
+    <string name="login">Login</string>
+    <string name="signup">Not a member? Sign up here.</string>
+    <string name="invalid_credential">Invalid email or password. Please try again.</string>
+
+    <!-- Common to many screens -->
+    <string name="enter_phoneNo">Enter Phone number</string>
+    <string name="enter_password">Enter Password</string>
+
+    <!-- SignUp Screen -->
+    <string name="enter_fname">Enter First Name</string>
+    <string name="enter_lname">Enter Last Name</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="enter_city">Enter City</string>
+    <string name="enter_country">Enter Country</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_dob"> Enter Date of Birth</string>>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="set_date">Set Date</string>
+    <string name="password_mismatch">Passwords do not match.Please confirm.</string>
+    <string name="fill_fields">Please fill all fields.</string>
+    <string name="invalid_password">Invalid password. Password must contain at least six characters, including numbers, special characters and upper and lower case characters.</string>
+    <string name="invalid_emailId">Invalid Email ID</string>
+    <string name="add_profile_picture">Add a profile picture</string>
+
+    <!-- Welcome Screen -->
+    <string name="welcome">Welcome %1$s %2$s! </string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="vehicle_id">Vehicle ID : %1$d</string>
+    <string name="no_vehicle">No vehicles added yet.</string>
+
+    <!-- List Item -->
+    <string name="year">Year : %1$d</string>
+    <string name="vehicle_model">Vehicle Model</string>
+
+    <!-- User Profile Screen-->
+    <string name="colour">Colour : %1$s</string>
+    <string name="price">Price : %1$d</string>
+    <string name="contact_details">Contact Details : </string>
+
+    <!-- Add Vehicle Screen-->
+    <string name="enter_brand">Enter Brand</string>
+    <string name="enter_model">Enter Model</string>
+    <string name="enter_year">Enter Year of Buying</string>
+    <string name="enter_colour">Enter Colour</string>
+    <string name="enter_price">Enter Price</string>
+    <string name="add_vehicle">Add Vehicle</string>
+    <string name="update_vehicle">Update Vehicle</string>
+    <string name="loading_failed">Loading failed.Please try again.</string>
+
+    <string name="parse_server_url">https://parse.buddy.com/parse/</string>
+    <string name="parse_app_id">17c4b757-d9cc-4e3f-b895-6f4053bf0004</string>
+    <string name="parse_client_key">Ttmvd7hyP1TcAV8851aNYQMKWh5UQBrM</string>
+
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="view">View Details</string>
+
+    <string name="owner_details">Owner Details</string>
+</resources>
