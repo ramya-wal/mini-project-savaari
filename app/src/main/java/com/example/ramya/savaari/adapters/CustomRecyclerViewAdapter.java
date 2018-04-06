@@ -105,9 +105,9 @@ public class CustomRecyclerViewAdapter extends RecyclerView.Adapter<CustomRecycl
 
                 }
             });
-           // if (!isOwnVehicle){
+            if (!isOwnVehicle){
                 holder.tvMenuOptions.setVisibility(View.GONE);
-           // }
+            }
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

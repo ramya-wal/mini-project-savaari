@@ -12,44 +12,41 @@
         android:layout_height="200dp" />
 
     <TextView
+        android:id="@+id/activity_view_vehicle_tvBrandModel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/activity_view_vehicle_tvBrandModel"
+        android:padding="20dp"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:text="Brand Model"
-        android:padding="20dp" />
+        android:textStyle="bold" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/activity_view_vehicle_tvColour"
-        android:text="Colour"
-        android:paddingLeft="20dp"
-        android:layout_weight="1"
-        android:padding="10dp" />
+        android:orientation="horizontal"
+        android:paddingTop="15dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/activity_view_vehicle_tvYear"
-        android:layout_weight="1"
-        android:text="Year"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/activity_view_vehicle_tvColour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/colour" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:id="@+id/activity_view_vehicle_tvPrice"
-        android:layout_weight="1"
-        android:text="Price"
-        android:layout_height="wrap_content"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/activity_view_vehicle_tvYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/year"/>
+
+        <TextView
+            android:id="@+id/activity_view_vehicle_tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/price"/>
     </LinearLayout>
-
-
 </LinearLayout>

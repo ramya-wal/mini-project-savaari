@@ -19,10 +19,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.ramya.savaari.R;
 import com.example.ramya.savaari.adapters.HorizontalRecyclerViewAdapter;
 import com.example.ramya.savaari.database.ExampleDao;
+import com.example.ramya.savaari.interfaces.OnItemClickListener;
 import com.example.ramya.savaari.models.Owner;
 import com.example.ramya.savaari.models.Vehicle;
 import com.example.ramya.savaari.models.VehicleAddedResponse;
@@ -107,30 +109,32 @@ public class AddVehicleActivity extends AppCompatActivity {
                 price = etPrice.getText().toString();
                 colour = etColour.getText().toString();
 
-                vehicle = new Vehicle(model, brand, Integer.parseInt(year), colour, new Owner(currentUser), Integer.parseInt(price));
-                progressDialogClass.showProgressDialog();
+                if (validate()) {
+                    progressDialogClass.showProgressDialog();
+                    vehicle = new Vehicle(model, brand, Integer.parseInt(year), colour, new Owner(currentUser), Integer.parseInt(price));
 
-                Call<VehicleAddedResponse> call = apiInterface.addVehicle(vehicleUploadHeaders, vehicle);
-                call.enqueue(new Callback<VehicleAddedResponse>() {
-                    @Override
-                    public void onResponse(Call<VehicleAddedResponse> call, Response<VehicleAddedResponse> response) {
-                        VehicleAddedResponse vehicleAddedResponse = response.body();
-                        vehicle.setVehicleId(vehicleAddedResponse.getObjectId());
+                    Call<VehicleAddedResponse> call = apiInterface.addVehicle(vehicleUploadHeaders, vehicle);
+                    call.enqueue(new Callback<VehicleAddedResponse>() {
+                        @Override
+                        public void onResponse(Call<VehicleAddedResponse> call, Response<VehicleAddedResponse> response) {
+                            VehicleAddedResponse vehicleAddedResponse = response.body();
+                            vehicle.setVehicleId(vehicleAddedResponse.getObjectId());
 
-                        exampleDao.insertVehicle(vehicle);
+                            exampleDao.insertVehicle(vehicle);
 
-                        try {
-                            uploadVehicleImages();
-                        } catch (ParseException e) {
-                            e.printStackTrace();
+                            try {
+                                uploadVehicleImages();
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<VehicleAddedResponse> call, Throwable t) {
-                        progressDialogClass.dismissProgressDialog();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<VehicleAddedResponse> call, Throwable t) {
+                            progressDialogClass.dismissProgressDialog();
+                        }
+                    });
+                }
             }
         });
 
@@ -172,10 +176,31 @@ public class AddVehicleActivity extends AppCompatActivity {
             rcvImageList.addItemDecoration(decoration);
 
             rcvImageList.setLayoutManager(layoutManager);
+            adapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+
+
+                }
+
+                @Override
+                public void onViewClicked(int position) {
+
+                }
+
+                @Override
+                public void onUpdateClicked(int position) {
+
+                }
+
+                @Override
+                public void onDeleteClicked(int position) {
+
+                }
+            });
             rcvImageList.setAdapter(adapter);
         }
     }
-
 
 
     @Override
@@ -234,5 +259,18 @@ public class AddVehicleActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    boolean validate() {
+        boolean isValid = false;
+        if (imageList != null && imageList.size() != 0) {
+            if (!(brand.isEmpty() || model.isEmpty() || year.isEmpty() || colour.isEmpty() || price.isEmpty())) {
+                isValid = true;
+            } else
+                Toast.makeText(getApplicationContext(), R.string.fill_fields, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), R.string.add_image, Toast.LENGTH_SHORT).show();
+        }
+        return isValid;
     }
 }

@@ -1,10 +1,13 @@
 package com.example.ramya.savaari.ui.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.ramya.savaari.R;
@@ -22,6 +25,8 @@ public class UserProfileActivity extends AppCompatActivity {
     User user;
     ExampleDao exampleDao;
 
+    FloatingActionButton updateUser;
+
     TextView tvName, tvLivesIn, tvAddress, tvDob, tvPhoneNo, tvEmail;
     CircleImageView civProfileImage;
 
@@ -34,11 +39,14 @@ public class UserProfileActivity extends AppCompatActivity {
         currentUser = sharedpreferences.getString(Constants.CURRENT_USER, null);
 
         exampleDao = new ExampleDao(getApplicationContext());
-        user = exampleDao.getUser(currentUser);
 
         String labelText = user.getFirstName() + " " + user.getLastName();
         setTitle(labelText);
+    }
 
+    protected void onResume() {
+        super.onResume();
+        user = exampleDao.getUser(currentUser);
         init();
     }
 
@@ -51,6 +59,16 @@ public class UserProfileActivity extends AppCompatActivity {
         tvLivesIn = findViewById(R.id.activity_user_profile_tvLivesIn);
 
         civProfileImage = findViewById(R.id.activity_user_profile_civProfileImage);
+
+        updateUser = findViewById(R.id.activity_user_profile_fabUpdateUser);
+        updateUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, UpdateUserActivity.class);
+                intent.putExtra("USER",user);
+                startActivity(intent);
+            }
+        });
 
         String name = user.getFirstName() + " " + user.getLastName();
 

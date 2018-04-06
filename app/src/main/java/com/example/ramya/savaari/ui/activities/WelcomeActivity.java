@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -35,7 +33,6 @@ import com.example.ramya.savaari.util.ProgressDialogClass;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +42,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class WelcomeActivity extends AppCompatActivity implements OnItemClickListener{
+public class WelcomeActivity extends AppCompatActivity implements OnItemClickListener {
 
     ImageView ivProfileImage;
     TextView tvWelcomeText;
@@ -104,7 +101,7 @@ public class WelcomeActivity extends AppCompatActivity implements OnItemClickLis
         tvWelcomeText.setText(getResources().getString(R.string.welcome, user.getFirstName(), user.getLastName()));
 
         ArrayList<Vehicle> vehicles = exampleDao.getVehiclesOfUser(currentUser);
-        if(vehicles == null || vehicles.size() == 0) {
+        if (vehicles == null || vehicles.size() == 0) {
             //API call for getting vehicles and inserting them into database
             progressDialogClass.showProgressDialog();
             Call<VehicleList> call = apiInterface.getAllVehicles(headers);
@@ -221,14 +218,8 @@ public class WelcomeActivity extends AppCompatActivity implements OnItemClickLis
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(WelcomeActivity.this);
         rcvVehicleList.setLayoutManager(layoutManager);
 
-        DividerItemDecoration decoration = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL);
-        rcvVehicleList.addItemDecoration(decoration);
-
         adapter = new CustomRecyclerViewAdapter(vehiclesArrayList, WelcomeActivity.this, true);
         rcvVehicleList.setAdapter(adapter);
-
-        //adapter.setOnItemClickListener(this);
-
     }
 
     public void getVehicleDetailsFromDatabase() {
@@ -260,13 +251,14 @@ public class WelcomeActivity extends AppCompatActivity implements OnItemClickLis
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finish();
+                        Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
 
                         editor = sharedpreferences.edit();
                         editor.putString(Constants.CURRENT_USER, null);
                         editor.apply();
                         //Delete all details from database
                         exampleDao.deleteUser(currentUser);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -281,16 +273,12 @@ public class WelcomeActivity extends AppCompatActivity implements OnItemClickLis
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(WelcomeActivity.this, ViewVehicleActivity.class);
-        //Passing vehicle object to VehicleDetailsActivity to view details
-        intent.putExtra(Constants.KEY_VEHICLE_ID, vehiclesArrayList.get(position).getVehicleId());
-        startActivity(intent);
+        //no action
     }
 
     @Override
     public void onViewClicked(int position) {
         Intent intent = new Intent(WelcomeActivity.this, ViewVehicleActivity.class);
-        //Passing vehicle object to VehicleDetailsActivity to view details
         intent.putExtra(Constants.KEY_VEHICLE_ID, vehiclesArrayList.get(position).getVehicleId());
         startActivity(intent);
     }
@@ -298,7 +286,7 @@ public class WelcomeActivity extends AppCompatActivity implements OnItemClickLis
     @Override
     public void onUpdateClicked(int position) {
         Intent intent = new Intent(WelcomeActivity.this, UpdateVehicleActivity.class);
-        //Passing vehicle object to VehicleDetailsActivity to view details
+        intent.putExtra(Constants.KEY_VEHICLE_OBJECT, vehiclesArrayList.get(position));
         startActivity(intent);
     }
 
@@ -310,18 +298,22 @@ public class WelcomeActivity extends AppCompatActivity implements OnItemClickLis
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         final String vehicleId = vehiclesArrayList.get(position).getVehicleId();
+                        progressDialogClass.showProgressDialog();
                         Call<ResponseBody> call = apiInterface.deleteVehicle(headers, vehicleId);
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
                             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                                 deleteVehicleImages(position);
-
+                                exampleDao.deleteVehicle(vehicleId);
+                                vehiclesArrayList.remove(position);
+                                vehicleImageThumbnail.remove(position);
+                                adapter.notifyDataSetChanged();
                             }
 
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                                progressDialogClass.dismissProgressDialog();
                             }
                         });
                     }
@@ -340,20 +332,17 @@ public class WelcomeActivity extends AppCompatActivity implements OnItemClickLis
     void deleteVehicleImages(final int position) {
         final String vehicleId = vehiclesArrayList.get(position).getVehicleId();
         List<VehicleImages> vehicleImagesList = exampleDao.getVehicleImages(vehicleId);
-        for (int i=0 ; i<vehicleImagesList.size() ; i++) {
+        for (int i = 0; i < vehicleImagesList.size(); i++) {
             Call<ResponseBody> call = apiInterface.deleteVehicleImages(headers, vehicleImagesList.get(i).getObjectId());
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    exampleDao.deleteVehicle(vehicleId);
-                    vehiclesArrayList.remove(position);
-                    vehicleImageThumbnail.remove(position);
-                    adapter.notifyDataSetChanged();
+                    progressDialogClass.dismissProgressDialog();
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                    progressDialogClass.dismissProgressDialog();
                 }
             });
         }

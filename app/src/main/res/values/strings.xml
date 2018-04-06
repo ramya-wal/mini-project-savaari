@@ -30,6 +30,8 @@
     <string name="invalid_emailId">Invalid Email ID</string>
     <string name="add_profile_picture">Add a profile picture</string>
 
+    <string name="update_profile">Update Profile</string>
+
     <!-- Welcome Screen -->
     <string name="welcome">Welcome %1$s %2$s! </string>
     <string name="title_activity_welcome">WelcomeActivity</string>
@@ -64,4 +66,8 @@
     <string name="view">View Details</string>
 
     <string name="owner_details">Owner Details</string>
+    <string name="add_image">Add an image</string>
+    <string name="vehicle_updated">Vehicle details has been updated.</string>
+    <string name="user_updated">Your details has been updated.</string>
+
 </resources>

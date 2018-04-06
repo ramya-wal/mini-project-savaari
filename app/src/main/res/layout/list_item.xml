@@ -13,6 +13,7 @@
             android:id="@+id/list_item_iv_vehicleImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:scaleType="fitXY"
             android:padding="5dp"
             android:adjustViewBounds="true" />
 

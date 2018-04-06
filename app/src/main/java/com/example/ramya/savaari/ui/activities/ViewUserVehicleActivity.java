@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.ramya.savaari.R;
@@ -32,7 +33,7 @@ import retrofit2.Response;
 public class ViewUserVehicleActivity extends AppCompatActivity {
 
     TextView tvBrandModel, tvColour, tvYear, tvPrice;
-    TextView tvName, tvLivesIn, tvAddress, tvPhoneNo, tvEmail;
+    TextView tvName, tvLivesIn, tvAddress, tvPhoneNo;
 
     private List<VehicleImages> imagesArrayList = new ArrayList<>();
     ArrayList<String> imagesArray = new ArrayList<>();
@@ -112,7 +113,6 @@ public class ViewUserVehicleActivity extends AppCompatActivity {
     void setUserDetails() {
         tvAddress = findViewById(R.id.acitvity_view_user_vehicle_tvAddress);
         tvPhoneNo = findViewById(R.id.acitvity_view_user_vehicle_tvPhoneNo);
-        tvEmail = findViewById(R.id.acitvity_view_user_vehicle_tvEmail);
         tvName = findViewById(R.id.activity_view_user_vehicle_tvName);
         tvLivesIn = findViewById(R.id.acitvity_view_user_vehicle_tvLiveIn);
 
@@ -121,7 +121,6 @@ public class ViewUserVehicleActivity extends AppCompatActivity {
         city = owner.getCity() + " " + owner.getCountry();
         tvAddress.setText(owner.getAddress());
         tvPhoneNo.setText(owner.getPhoneNo());
-        tvEmail.setText(owner.getEmail());
         tvLivesIn.setText(city);
         tvName.setText(name);
     }
@@ -156,5 +155,15 @@ public class ViewUserVehicleActivity extends AppCompatActivity {
         fragment.setArguments(bundle);
         fragmentTransaction.add(R.id.activity_view_user_vehicle_fragViewPager, fragment);
         fragmentTransaction.commit();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

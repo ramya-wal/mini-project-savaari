@@ -161,11 +161,6 @@ public class SignUpActivity extends AppCompatActivity {
                     int id = rgGender.getCheckedRadioButtonId();
                     RadioButton radioButton = findViewById(id);
                     gender = radioButton.getText().toString();
-
-//                    Log.e("LOG", file.getName());
-//                    final RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
-//                    MultipartBody.Part body = MultipartBody.Part.createFormData(file.getName(), file.getName(), requestBody);
-//                                RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), file.getName());
                     progressDialogClass.showProgressDialog();
 
                     ParseFile file = new ParseFile("car.jpg", image);
@@ -278,7 +273,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         etSetDate.setText(dateOfBirth);
     }
-
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int y, int m, int dayOfMonth) {

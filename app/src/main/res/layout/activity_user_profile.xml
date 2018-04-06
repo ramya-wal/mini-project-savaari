@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context="com.example.ramya.savaari.ui.activities.UserProfileActivity">
 
     <LinearLayout
@@ -13,8 +14,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/activity_user_profile_civProfileImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/user_profile_image" />
 
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/home16"
             android:drawablePadding="@dimen/drawable_padding"
+            android:paddingLeft="20dp"
             android:padding="10dp"
             android:textSize="@dimen/user_profile_text" />
 
@@ -71,6 +73,15 @@
             android:drawableStart="@drawable/mail"
             android:padding="10dp"
             android:textSize="@dimen/user_profile_text" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/activity_user_profile_fabUpdateUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:src="@drawable/edit32" />
     </LinearLayout>
 
 </ScrollView>

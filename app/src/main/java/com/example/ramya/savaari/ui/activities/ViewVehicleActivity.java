@@ -53,11 +53,12 @@ public class ViewVehicleActivity extends AppCompatActivity {
         String brandModel = vehicle.getBrand() + " " + vehicle.getModel();
         tvBrandModel.setText(brandModel);
 
-        String priceText = Integer.toString(vehicle.getPrice());
-        String yearText = Integer.toString(vehicle.getYear());
+        String priceText = getResources().getString(R.string.price, vehicle.getPrice());
+        String yearText = getResources().getString(R.string.year, vehicle.getYear());
+        String colourText = getResources().getString(R.string.colour, vehicle.getColor());
         tvPrice.setText(priceText);
         tvYear.setText(yearText);
-        tvColour.setText(vehicle.getColor());
+        tvColour.setText(colourText);
 
        // ArrayList<VehicleImages> vehicleImagesArrayList = exampleDao.getVehicleImages(vehicleId);
 

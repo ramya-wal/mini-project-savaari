@@ -20,7 +20,6 @@
             android:id="@+id/activity_view_user_vehicle_tvBrandModel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Brand Model"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -101,14 +100,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/phone"
-            android:padding="10dp"
-            android:textSize="@dimen/user_profile_text" />
-
-        <TextView
-            android:id="@+id/acitvity_view_user_vehicle_tvEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/mail"
             android:padding="10dp"
             android:textSize="@dimen/user_profile_text" />
     </LinearLayout>

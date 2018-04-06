@@ -128,8 +128,6 @@ public class ViewAllVehiclesActivity extends AppCompatActivity implements OnItem
     public void showVehicles () {
         vehicleRecyclerView = findViewById(R.id.activity_view_all_vehicles_rcvVehicleList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ViewAllVehiclesActivity.this);
-        DividerItemDecoration decoration = new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL);
-        vehicleRecyclerView.addItemDecoration(decoration);
         vehicleRecyclerView.setLayoutManager(layoutManager);
         adapter = new CustomRecyclerViewAdapter(vehiclesArrayList, ViewAllVehiclesActivity.this, false);
         vehicleRecyclerView.setAdapter(adapter);
@@ -169,4 +167,5 @@ public class ViewAllVehiclesActivity extends AppCompatActivity implements OnItem
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

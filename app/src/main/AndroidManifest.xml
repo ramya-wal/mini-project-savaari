@@ -64,6 +64,7 @@
         </activity>
         <activity
             android:name=".ui.activities.ViewAllVehiclesActivity"
+            android:label="View Vehicles"
             android:parentActivityName=".ui.activities.WelcomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -71,24 +72,26 @@
         </activity>
         <activity
             android:name=".ui.activities.ViewUserVehicleActivity"
+            android:label="View Vehicle"
             android:parentActivityName=".ui.activities.ViewAllVehiclesActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.ramya.savaari.ui.activities.ViewAllVehiclesActivity" />
         </activity>
-
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.ramya.savaari.fileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
+        <activity android:name=".ui.activities.UpdateVehicleActivity"
+            android:label="Update"
+            android:parentActivityName=".ui.activities.WelcomeActivity">
             <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_provider_paths" />
-        </provider>
-
-        <activity android:name=".ui.activities.UpdateVehicleActivity" />
-        <activity android:name=".ui.activities.UpdateUserActivity" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ramya.savaari.ui.activities.WelcomeActivity" />
+        </activity>
+        <activity android:name=".ui.activities.UpdateUserActivity"
+            android:label="Update"
+            android:parentActivityName=".ui.activities.UserProfileActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ramya.savaari.ui.activities.UserProfileActivity" />
+        </activity>
         <activity android:name=".ui.activities.SplashActivity"
             android:theme="@style/LoginTheme">
             <intent-filter>
